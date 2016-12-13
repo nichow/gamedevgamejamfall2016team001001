@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour {
 
@@ -56,11 +57,18 @@ public class PlayerMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+	
+		Reset ();
 		Horizontal ();
 		Jump ();
 
 
+	}
+
+	void Reset(){
+		if (Input.GetButtonDown ("Reset")) {
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+		}
 	}
 
 	//horizontal movement
