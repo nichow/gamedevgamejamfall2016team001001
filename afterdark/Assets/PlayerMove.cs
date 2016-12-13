@@ -138,5 +138,17 @@ public class PlayerMove : MonoBehaviour {
 			rb.AddForce (transform.up * jumpForceGradual);
 		}
 	}
-		
+
+	//prevents from air jumping
+	void OnCollisionEnter2D(Collision2D coll){
+		if (coll.gameObject.tag == "Platform"){
+			grounded = true;
+		}
+	}
+
+	void OnCollisionExit2D(Collision2D coll){
+		if (coll.gameObject.tag == "Platform") {
+			grounded = false;
+		}
+	}
 }
