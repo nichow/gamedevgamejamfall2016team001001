@@ -34,6 +34,9 @@ public class PlayerMove : MonoBehaviour {
 	//the gradual jump force
 	public float jumpForceGradual;
 
+	//which direction is being faced
+	bool faceRight;
+
 	// Use this for initialization
 	void Start () {
 		speed = 0;
@@ -48,6 +51,7 @@ public class PlayerMove : MonoBehaviour {
 		jumpForceGradual = 20;
 		timeHere = Time.time;
 		tooLong = true;
+		faceRight = true;
 	}
 	
 	// Update is called once per frame
@@ -63,10 +67,17 @@ public class PlayerMove : MonoBehaviour {
 	void Horizontal (){
 
 		if (Input.GetButton ("Horizontal")) {
+			GetComponent<Animator> ().Play ("PlayerWalk");
 			var direction = Input.GetAxis ("Horizontal");
 
 			if (direction < 0) {
 				//left movement
+
+				//sprite flip
+				if (faceRight) {
+					GetComponent<SpriteRenderer> ().flipX = true;
+					faceRight = false;
+				}
 
 				if (speed > 0) {
 					//if it's moving in the opposite direction
@@ -77,6 +88,12 @@ public class PlayerMove : MonoBehaviour {
 			if (direction > 0) {
 				//right movement
 
+				//sprite flip
+				if (!faceRight) {
+					GetComponent<SpriteRenderer> ().flipX = false;
+					faceRight = true;
+				}
+
 				if (speed < 0) {
 					//if it's moving in the opposite direction
 					speed = speed * turnaroundSlowConstant;
@@ -85,6 +102,7 @@ public class PlayerMove : MonoBehaviour {
 			}
 		} 
 		if (!Input.GetButton ("Horizontal")) {
+			GetComponent<Animator> ().Play ("PlayerIdle");
 			if ((speed > neutralSlowBounds) || (speed < (-1 * neutralSlowBounds))) {
 				speed = speed * neutralSlowConstant;
 			} else {
