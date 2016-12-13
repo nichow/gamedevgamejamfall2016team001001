@@ -8,36 +8,44 @@ public class PlayerMove : MonoBehaviour {
 	bool grounded = true;
 	float timeHere;
 	bool tooLong;
-	public Rigidbody2D rb;
+	Rigidbody2D rb;
 
 	//stores the current speed
-	float speed = 0;
+	float speed;
 
 	//the maximum speed
-	public float maxSpeed = 20;
+	public float maxSpeed;
 
 	//the rate of speed gain
-	public float multiplier = 100;
+	public float multiplier;
 
 	//the rate at which the speed returns to 0 when turning around
-	public float turnaroundSlowConstant = .55f;
+	public float turnaroundSlowConstant;
 
 	//the speed at which, if no button is held, it snaps to 0
-	public float neutralSlowBounds = 1;
+	public float neutralSlowBounds;
 
 	//the rate at which the speed slows with no button held
-	public float neutralSlowConstant = .65f;
+	public float neutralSlowConstant;
 
 	//the initial jump force
-	public float jumpForce = 750;
+	public float jumpForce;
 
 	//the gradual jump force
-	public float jumpForceGradual = 48;
+	public float jumpForceGradual;
 
 	// Use this for initialization
 	void Start () {
+		speed = 0;
 		rb = GetComponent<Rigidbody2D> ();
-		rb.gravityScale = 7;
+		rb.gravityScale = 5;
+		maxSpeed = 8;
+		multiplier = 70;
+		turnaroundSlowConstant = .55f;
+		neutralSlowBounds = 1;
+		neutralSlowConstant = .65f;
+		jumpForce = 600;
+		jumpForceGradual = 20;
 		timeHere = Time.time;
 		tooLong = true;
 	}
