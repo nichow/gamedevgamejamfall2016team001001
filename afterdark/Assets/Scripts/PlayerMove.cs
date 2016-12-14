@@ -38,6 +38,9 @@ public class PlayerMove : MonoBehaviour {
 	//which direction is being faced
 	bool faceRight;
 
+    //the particles that show when character jumps
+    public ParticleSystem jumpParticles;
+
 	// Use this for initialization
 	void Start () {
 		speed = 0;
@@ -138,6 +141,9 @@ public class PlayerMove : MonoBehaviour {
 			if (grounded) {
 				timeHere = Time.time;
 				rb.AddForce (transform.up * jumpForce);
+                jumpParticles.Play();
+                GetComponent<Animator>().Play("PlayerJump");
+                GetComponent<AudioSource>().Play();
 			}
 		}
 
