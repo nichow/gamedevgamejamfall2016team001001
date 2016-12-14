@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: bfa93965fe0148544a48722dc62e91b6
+timeCreated: 1481653129
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - worm: {fileID: 1000013186147294, guid: 16a913d9daccd3641aef488d2769123b, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
